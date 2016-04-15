@@ -11,5 +11,8 @@ public class Square {
         this.l = l;
         //атрибут = переменная ф-ции, параметр переданный к конструктор
     }
+    public double area(){
 
+        return this.l * this.l;
+    }
 }
