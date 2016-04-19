@@ -21,10 +21,6 @@ public class GroupCreationTest {
     public void setUp() throws Exception {
         wd = new FirefoxDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-    }
-    
-    @Test
-    public void GroupCreationTest() {
         wd.get("http://localhost/addressbook/");
         wd.findElement(By.name("user")).click();
         wd.findElement(By.name("user")).clear();
@@ -33,23 +29,22 @@ public class GroupCreationTest {
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
         wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
+    }
+    
+    @Test
+    public void testGroupCreation() {
+
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("GroupName Takos");
+        wd.findElement(By.name("group_name")).sendKeys("GroupName1");
         wd.findElement(By.name("group_header")).click();
         wd.findElement(By.name("group_header")).clear();
         wd.findElement(By.name("group_header")).sendKeys("Group Header1");
         wd.findElement(By.name("group_footer")).click();
         wd.findElement(By.name("group_footer")).clear();
         wd.findElement(By.name("group_footer")).sendKeys("Group Footer1");
-        wd.findElement(By.name("group_name")).click();
-        wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("GroupName1 Takos");
-        wd.findElement(By.name("group_name")).click();
-        wd.findElement(By.name("group_name")).clear();
-        wd.findElement(By.name("group_name")).sendKeys("GroupName1");
         wd.findElement(By.name("submit")).click();
         wd.findElement(By.linkText("group page")).click();
     }
