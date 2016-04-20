@@ -33,4 +33,24 @@ public class ContactHelper extends HelperBase {
     public void gotoHomePage() {
         click(By.linkText("home page"));
     }
+
+    public void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void initContactModification() {
+        click(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]"));
+    }
+
+    public void submitContactModification() {
+        click(By.name("update"));
+    }
+
+    public void initContactDeletion() {
+        click(By.xpath("//*[@value='Delete']"));
+    }
+
+    public void confirmDeletion() {
+        wd.switchTo().alert().accept();
+    }
 }
