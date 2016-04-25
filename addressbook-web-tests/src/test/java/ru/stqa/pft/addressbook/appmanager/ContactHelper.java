@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 /**
  * Created by tetyana.kostyrkina on 4/20/2016.
@@ -58,5 +59,15 @@ public class ContactHelper extends HelperBase {
 
     public void confirmDeletion() {
         wd.switchTo().alert().accept();
+    }
+
+    public void createContact(ContactData contact, boolean creation) {
+        initContactCreation();
+        fillContactData(contact, true);
+        submitContactData();
+    }
+
+    public boolean isThereAContact() {
+        return isElementPresent(By.name("selected[]"));
     }
 }
