@@ -13,7 +13,8 @@ public class ContactModificationTests extends TestBase {
     public void testContactModification() {
         app.getContactHelper().selectContact();
         app.getContactHelper().initContactModification();
-        app.getContactHelper().fillContactData(new ContactData("FirstName 2Mod", "LastName 2", "Myaddress 8", "111222333", "firstname.lastname@test.com"));
+        app.getContactHelper().fillContactData(new ContactData(null, "LastName", "Myaddress 8", null, "firstname.lastname@test.com"));
+        //app.getContactHelper().fillContactData(new ContactData("FirstName 2Mod", "LastName 2", "Myaddress 8", "111222333", "firstname.lastname@test.com"));
         app.getContactHelper().submitContactModification();
         app.getContactHelper().gotoHomePage();
     }
