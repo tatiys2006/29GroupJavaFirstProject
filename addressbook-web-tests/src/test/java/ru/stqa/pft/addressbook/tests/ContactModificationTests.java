@@ -13,8 +13,10 @@ public class ContactModificationTests extends TestBase {
     @Test
     public void testContactModification() {
         if (! app.getContactHelper().isThereAContact()) {
+
             app.getContactHelper().createContact(new ContactData("FirstName", null, null, null, "firstname.lastname@test.com", "[none]"));
             app.getNavigationHelper().gotoHomePage();
+
         }
         app.getContactHelper().selectContact();
         app.getContactHelper().initContactModification();

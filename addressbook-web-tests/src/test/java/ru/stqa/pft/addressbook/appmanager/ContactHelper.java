@@ -61,16 +61,12 @@ public class ContactHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    private void returnToHomePage() { click(By.linkText("home page"));
-    }
 
     public void createContact(ContactData contact) {
         initContactCreation();
         fillContactData(contact, true);
         submitContactData();
     }
-
-
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
