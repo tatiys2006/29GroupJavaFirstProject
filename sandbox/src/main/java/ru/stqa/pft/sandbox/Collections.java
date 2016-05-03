@@ -1,6 +1,6 @@
 package ru.stqa.pft.sandbox;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -18,14 +18,31 @@ public class Collections {
         langs[3] = "PHP";
         */
 
-        List<String> languages = new ArrayList<String>(); //spisok
-        languages.add("Java");
+        for (String l : langs) {
+            System.out.println("Я хочу выучить " + l);
+        }
+
+        List languages = Arrays.asList("Java 8", "C#", "Python");
+       /*
+       List<String> languages = Arrays.asList("Java 8", "C#", "Python");
+    ili
+       List<String> languages = new ArrayList<String>(); //spisok
+       
+       languages.add("Java");
         languages.add("C#");
         languages.add("Python");
 
 
+        for (int i = 0; i < languages.size(); i++){
+            System.out.println("Я хочу выучить " + languages.get(i));
+        }
 
         for (String l : languages) {
+            System.out.println("Я хочу выучить " + l);
+        }
+        */
+
+        for (Object l : languages) { //spisok obectov proizvolnogo tipa
             System.out.println("Я хочу выучить " + l);
         }
     }
