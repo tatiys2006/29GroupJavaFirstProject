@@ -27,7 +27,7 @@ public class Collections {
        List<String> languages = Arrays.asList("Java 8", "C#", "Python");
     ili
        List<String> languages = new ArrayList<String>(); //spisok
-       
+
        languages.add("Java");
         languages.add("C#");
         languages.add("Python");
