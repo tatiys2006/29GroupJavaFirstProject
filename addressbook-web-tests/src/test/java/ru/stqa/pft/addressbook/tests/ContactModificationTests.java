@@ -25,10 +25,15 @@ public class ContactModificationTests extends TestBase {
         List<ContactData> before = app.getContactHelper().getContactList();
         app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().initContactModification();
-        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), null, "LastNameModif", "Myaddress 8Modif", null, "firstname.lastname@test.com", null);
+        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "FirstName4", "LastNameModif", "Myaddress 8Modif", null, "firstname.lastname@test.com", null);
         app.getContactHelper().fillContactData(contact, false);
         app.getContactHelper().submitContactModification();
         app.getNavigationHelper().gotoHomePage();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<ContactData> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size());
 
