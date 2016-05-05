@@ -1,7 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.List;
 
 
 /**
@@ -10,15 +13,21 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactDeletionTests extends TestBase {
 
     @Test
-    public void testContactDeletion() {
+    public void testContactDeletion() throws InterruptedException {
 
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("FirstName", "1", "2", "3", "firstname.lastname@test.com", "[none]"));
             app.getNavigationHelper().gotoHomePage();
         }
-
-        app.getContactHelper().selectContact();
+        List<ContactData> before = app.getContactHelper().getContactList();
+        app.getContactHelper().selectContact(before.size() - 1);
         app.getContactHelper().initContactDeletion();
         app.getContactHelper().confirmDeletion();
+        Thread.sleep(1000);
+        List<ContactData> after = app.getContactHelper().getContactList();
+        Assert.assertEquals(after.size(), before.size() - 1);
+
+        before.remove(before.size() - 1);
+        Assert.assertEquals(before, after);
     }
 }
