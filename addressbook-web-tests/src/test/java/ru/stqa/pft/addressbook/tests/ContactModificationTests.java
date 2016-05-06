@@ -1,10 +1,8 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
@@ -20,7 +18,7 @@ public class ContactModificationTests extends TestBase {
         if (! app.getContactHelper().isThereAContact()) {
             app.getContactHelper().createContact(new ContactData("FirstName", null, null, null, "firstname.lastname@test.com",
                     "[none]"));
-            app.getNavigationHelper().gotoHomePage();
+            app.goTo().gotoHomePage();
         }
 
         List<ContactData> before = app.getContactHelper().getContactList();
@@ -31,7 +29,7 @@ public class ContactModificationTests extends TestBase {
                 "Myaddress 8Modif", null, "firstname.lastname@test.com", null);
         app.getContactHelper().fillContactData(contact, false);
         app.getContactHelper().submitContactModification();
-        app.getNavigationHelper().gotoHomePage();
+        app.goTo().gotoHomePage();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
