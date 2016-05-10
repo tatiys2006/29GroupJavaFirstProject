@@ -15,16 +15,16 @@ public class ContactDeletionTests extends TestBase {
     @Test(enabled = false)
     public void testContactDeletion() throws InterruptedException {
 
-        if (! app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("FirstName", "1", "2", "3", "firstname.lastname@test.com", "[none]"));
-            app.goTo().gotoHomePage();
+        if (! app.contact().isThereAContact()) {
+            app.contact().create(new ContactData("FirstName", "1", "2", "3", "firstname.lastname@test.com", "[none]"));
+            app.goTo().homePage();
         }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().initContactDeletion();
-        app.getContactHelper().confirmDeletion();
+        List<ContactData> before = app.contact().all();
+        app.contact().selectContactById(before.size() - 1);
+        app.contact().initContactDeletion();
+        app.contact().confirmDeletion();
         Thread.sleep(5000);
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
 
         before.remove(before.size() - 1);

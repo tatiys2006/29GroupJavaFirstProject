@@ -15,27 +15,27 @@ public class ContactModificationTests extends TestBase {
 
     @Test(enabled = false)
     public void testContactModification() {
-        if (! app.getContactHelper().isThereAContact()) {
-            app.getContactHelper().createContact(new ContactData("FirstName", null, null, null, "firstname.lastname@test.com",
+        if (! app.contact().isThereAContact()) {
+            app.contact().create(new ContactData("FirstName", null, null, null, "firstname.lastname@test.com",
                     "[none]"));
-            app.goTo().gotoHomePage();
+            app.goTo().homePage();
         }
 
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().all();
 
-        app.getContactHelper().selectContact(before.size() - 1);
-        app.getContactHelper().initContactModification(before.size());
+        app.contact().selectContactById(before.size() - 1);
+        app.contact().initContactModification(before.size());
         ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "FirstName4", "LastNameModif",
                 "Myaddress 8Modif", null, "firstname.lastname@test.com", null);
-        app.getContactHelper().fillContactData(contact, false);
-        app.getContactHelper().submitContactModification();
-        app.goTo().gotoHomePage();
+        app.contact().fillContactData(contact, false);
+        app.contact().submitContactModification();
+        app.goTo().homePage();
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() - 1);

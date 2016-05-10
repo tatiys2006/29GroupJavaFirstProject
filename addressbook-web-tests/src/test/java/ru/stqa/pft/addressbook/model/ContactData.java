@@ -1,16 +1,16 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String address;
-    private final String phoneNumberHome;
-    private final String email;
+    private int id = Integer.MAX_VALUE;
+    private  String firstName;
+    private  String lastName;
+    private  String address;
+    private  String phoneNumberHome;
+    private  String email;
     private String group;
 
     public ContactData(String firstName, String lastName, String address, String phoneNumberHome, String email, String group) {
-        this.id = Integer.MAX_VALUE;
+        this.id ;
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
