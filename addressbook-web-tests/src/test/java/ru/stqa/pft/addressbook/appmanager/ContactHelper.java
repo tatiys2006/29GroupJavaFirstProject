@@ -48,8 +48,8 @@ public class ContactHelper extends HelperBase {
         wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 
-    public void initContactModification(int index) {
-        click(By.xpath("//*[@id='maintable']/tbody/tr[" + (index + 1) + "]/td[8]"));
+    public void initContactModification(int id) {
+        click(By.xpath(".//*[@id='maintable']/tbody/tr[" + (id + 1) + "]/td[8]")); ///PROBLEM!!!!
     }
 
     public void submitContactModification() {
@@ -57,7 +57,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactDeletion() {
-        click(By.xpath("//*[@value='Delete']"));
+        click(By.xpath(".//*[@value='Delete']"));
     }
 
     public void confirmDeletion() {
@@ -80,6 +80,14 @@ public class ContactHelper extends HelperBase {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void modify(ContactData contact) {
+        selectContactById(contact.getId());
+        initContactModification(contact.getId());
+        fillContactData(contact, false);
+        submitContactModification();
+
     }
 
     public boolean isThereAContact() {
