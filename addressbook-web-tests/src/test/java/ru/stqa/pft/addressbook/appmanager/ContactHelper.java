@@ -1,18 +1,16 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by tetyana.kostyrkina on 4/20/2016.
@@ -77,28 +75,19 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-     public Contacts all() {
-         Contacts contacts = new Contacts();
+    public Set<ContactData> all() {
+    // public Contacts all() {
+         Set<ContactData> contacts = new HashSet<ContactData>();
+       //  Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']//tr[@name='entry']"));
         for (WebElement element: elements) {
             String name = element.findElement(By.xpath(".//td[3]")).getText();
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contacts.add(new ContactData().withId(id).withName(name).withLastName(lastName));
+            contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
         }
 
         return contacts;
     }
-
-    /*
-     public Groups all() {
-        Groups groups = new Groups();
-        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-        for (WebElement element: elements) {
-            String name = element.getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            groups.add(new GroupData().withId(id).withName(name));
-        }
-    */
 
 }
