@@ -71,6 +71,17 @@ public class ContactHelper extends HelperBase {
         submitContactData();
     }
 
+    public void delete(ContactData contact) {
+        selectContactById(contact.getId());
+        initContactDeletion();
+        confirmDeletion();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
     }
@@ -89,5 +100,6 @@ public class ContactHelper extends HelperBase {
 
         return contacts;
     }
+
 
 }

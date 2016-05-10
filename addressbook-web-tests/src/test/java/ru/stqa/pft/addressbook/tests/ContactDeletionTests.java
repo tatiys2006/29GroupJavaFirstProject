@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -25,20 +26,20 @@ public class ContactDeletionTests extends TestBase {
         }
     }
 
-   /*@Test
+   @Test
     public void testContactDeletion() throws InterruptedException {
 
+       Set<ContactData> before = app.contact().all();
+       ContactData deletedContact = before.iterator().next();
+    //Contacts before = app.contact().all();
 
-    Contacts before = app.contact().all();
-        int index = before.size() - 1;
-        app.contact().selectContactById(index);
-        app.contact().initContactDeletion();
-        app.contact().confirmDeletion();
-        Thread.sleep(5000);
-    Contacts after = app.contact().all();
+        app.contact().delete(deletedContact);
+
+       Set<ContactData> after = app.contact().all();
+    //Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(index);
+        before.remove(deletedContact);
         Assert.assertEquals(before, after);
-    } */
+    }
 }
