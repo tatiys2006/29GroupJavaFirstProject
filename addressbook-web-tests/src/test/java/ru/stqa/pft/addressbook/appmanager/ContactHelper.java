@@ -49,8 +49,9 @@ public class ContactHelper extends HelperBase {
     }
 
     public void initContactModification(int id) {
-        click(By.xpath(".//*[@id='maintable']/tbody/tr[" + (id + 1) + "]/td[8]")); ///PROBLEM!!!!
+        click(By.xpath(".//a[@href='"+ "edit.php?id=" + id + "']/img[@title='Edit']")); ///PROBLEM!!!!
     }
+
 
     public void submitContactModification() {
         click(By.name("update"));
