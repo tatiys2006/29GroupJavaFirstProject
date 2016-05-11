@@ -95,10 +95,10 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public Set<ContactData> all() {
-    // public Contacts all() {
-         Set<ContactData> contacts = new HashSet<ContactData>();
-       //  Contacts contacts = new Contacts();
+    //public Set<ContactData> all() {
+   public Contacts all() {
+         //Set<ContactData> contacts = new HashSet<ContactData>();
+         Contacts contacts = new Contacts();
         List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']//tr[@name='entry']"));
         for (WebElement element: elements) {
             String name = element.findElement(By.xpath(".//td[3]")).getText();
@@ -106,9 +106,6 @@ public class ContactHelper extends HelperBase {
            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
             contacts.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
         }
-
         return contacts;
     }
-
-
 }
