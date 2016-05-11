@@ -6,9 +6,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.List;
-import java.util.Set;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -32,19 +29,12 @@ public class ContactDeletionTests extends TestBase {
    @Test
     public void testContactDeletion() throws InterruptedException {
 
-     //  Set<ContactData> before = app.contact().all();
        Contacts before = app.contact().all();
        ContactData deletedContact = before.iterator().next();
-
-
         app.contact().delete(deletedContact);
 
-      // Set<ContactData> after = app.contact().all();
     Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size() - 1);
-
-        //before.remove(deletedContact);
-        //Assert.assertEquals(before, after);
        assertThat(after, equalTo(before.withOut(deletedContact)));
     }
 }
