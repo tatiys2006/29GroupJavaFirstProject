@@ -105,12 +105,13 @@ public class ContactHelper extends HelperBase {
 
     private Contacts contactCache = null;
 
-   public Contacts all() {
+ //  public Contacts all() {
+    public Set<ContactData> all() {
         if (contactCache != null) {
             return  new Contacts(contactCache);
         }
        contactCache = new Contacts();
-        List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']//tr[@name='entry']"));
+      /*  List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']//tr[@name='entry']"));
         for (WebElement element: elements) {
             String name = element.findElement(By.xpath(".//td[3]")).getText();
             String lastName = element.findElement(By.xpath(".//td[2]")).getText();
@@ -118,7 +119,21 @@ public class ContactHelper extends HelperBase {
             contactCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
         }
         return new Contacts(contactCache);
-    }
+        */
+   Set<ContactData> contacts = new HashSet<ContactData>();
+       List<WebElement> rows = wd.findElements(By.name("entry"));
+       for (WebElement row : rows) {
+           List<WebElement> cells = wd.findElements(By.name("td"));
+           int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+           String lastname = cells.get(1).getText();
+           String firstname = cells.get(2).getText();
+           String[] phones = cells.get(5).getText().split("\n");
+
+           contacts.add(new ContactData().withId(id).withFirstName(firstname).withLastName(lastname)
+                   .withPhoneNumberHome(phones[0]).withMobileHome(phones[1]).withWorkPhone(phones[2]));
+       }
+       return contacts;
+   }
 
     public ContactData infoFromEditForm(ContactData contact) {
         initContactModificationById(contact.getId());

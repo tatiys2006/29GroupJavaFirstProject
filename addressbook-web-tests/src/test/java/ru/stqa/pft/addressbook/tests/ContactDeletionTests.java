@@ -26,7 +26,7 @@ public class ContactDeletionTests extends TestBase {
         }
     }
 
-   @Test
+   /*@Test
     public void testContactDeletion() throws InterruptedException {
 
        Contacts before = app.contact().all();
@@ -35,5 +35,5 @@ public class ContactDeletionTests extends TestBase {
         assertThat(app.contact().count(), equalTo(before.size() - 1));
         Contacts after = app.contact().all();
         assertThat(after, equalTo(before.withOut(deletedContact)));
-    }
+    }*/
 }
