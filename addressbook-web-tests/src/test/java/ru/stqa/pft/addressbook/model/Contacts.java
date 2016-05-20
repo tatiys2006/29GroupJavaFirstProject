@@ -22,7 +22,8 @@ public class Contacts extends ForwardingSet<ContactData> {
 
     @Override
     protected Set<ContactData> delegate() {
-        return delegate;
+       return delegate;
+
     }
 
     public Contacts withAdded(ContactData contact) {

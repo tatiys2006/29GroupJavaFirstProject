@@ -10,7 +10,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTest extends TestBase {
 
 
-   /*@Test
+   @Test
     public void testContactCreation() {
        Contacts before = app.contact().all();
 
@@ -22,5 +22,5 @@ public class ContactCreationTest extends TestBase {
        Contacts after = app.contact().all();
        assertThat(after, equalTo(before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
 
-    }*/
+    }
 }

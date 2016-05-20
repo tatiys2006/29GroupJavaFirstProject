@@ -105,26 +105,29 @@ public class ContactHelper extends HelperBase {
 
     private Contacts contactCache = null;
 
- //  public Contacts all() {
-    public Set<ContactData> all() {
-        if (contactCache != null) {
-            return  new Contacts(contactCache);
-        }
+   public Contacts all() {
+       if (contactCache != null) {
+           return new Contacts(contactCache);
+       }
        contactCache = new Contacts();
-      /*  List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']//tr[@name='entry']"));
-        for (WebElement element: elements) {
-            String name = element.findElement(By.xpath(".//td[3]")).getText();
-            String lastName = element.findElement(By.xpath(".//td[2]")).getText();
+       List<WebElement> elements = wd.findElements(By.xpath(".//*[@id='maintable']//tr[@name='entry']"));
+       for (WebElement element : elements) {
+           String name = element.findElement(By.xpath(".//td[3]")).getText();
+           String lastName = element.findElement(By.xpath(".//td[2]")).getText();
            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            contactCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
-        }
-        return new Contacts(contactCache);
-        */
-   Set<ContactData> contacts = new HashSet<ContactData>();
+           contactCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName));
+       }
+       return new Contacts(contactCache);
+   }
+
+
+    public Set<ContactData> allForPhoneTest() {
+           Set<ContactData> contacts = new HashSet<ContactData>();
        List<WebElement> rows = wd.findElements(By.name("entry"));
        for (WebElement row : rows) {
-           List<WebElement> cells = wd.findElements(By.name("td"));
+           List<WebElement> cells = row.findElements(By.tagName("td"));
            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+           //int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
            String lastname = cells.get(1).getText();
            String firstname = cells.get(2).getText();
            String[] phones = cells.get(5).getText().split("\n");
