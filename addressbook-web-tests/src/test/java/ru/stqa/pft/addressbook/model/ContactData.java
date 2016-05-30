@@ -10,17 +10,29 @@ public class ContactData {
     private String group;
     private String WorkPhone;
     private String MobileHome;
+    private String allPhones;
 
     public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
 
+    public String getAllPhones() {
+        return allPhones;
+    }
 
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
 
     public ContactData withLastName(String lastName) {
         this.lastName = lastName;
         return this;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
@@ -29,6 +41,7 @@ public class ContactData {
         if (o == null || getClass() != o.getClass()) return false;
 
         ContactData that = (ContactData) o;
+
 
         if (id != that.id) return false;
         if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
