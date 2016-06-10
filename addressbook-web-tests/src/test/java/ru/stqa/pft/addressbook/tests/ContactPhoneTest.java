@@ -26,7 +26,7 @@ public class ContactPhoneTest extends TestBase{
         }
     }
 
-   // @Test
+   @Test
     public void testContactPhones() {
         app.goTo().homePage();
         ContactData contact = app.contact().allForPhoneTest().iterator().next();
@@ -51,16 +51,17 @@ public class ContactPhoneTest extends TestBase{
     }
 
     @Test
-    public void testAdresses() {
+    public void testAddresses() {
         app.goTo().homePage();
         ContactData contact = app.contact().allAddresses().iterator().next();
-        ContactData contactInfoEditForm = app.contact().infoFromEditForm(contact);
-        assertThat(contact.getAllEmailAddresses(), equalTo(mergeEmailAdresses(contactInfoEditForm)));
-        assertThat(contact.getAddress(), equalTo(contactInfoEditForm.getAddress()));
+        ContactData contactInfoEditFormAddressCompare = app.contact().infoFromEditFormAddressCompare(contact);
+        assertThat(contact.getAddress(), equalTo(contactInfoEditFormAddressCompare.getAddress()));
+        assertThat(contact.getAllEmailAddresses(), equalTo(mergeEmailAddresses(contactInfoEditFormAddressCompare)));
+
 
     }
 
-    private String  mergeEmailAdresses(ContactData contact) {
+    private String  mergeEmailAddresses(ContactData contact) {
         return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
                 .stream().filter((s) -> ! s.equals(""))
                 .collect(Collectors.joining("\n"));
