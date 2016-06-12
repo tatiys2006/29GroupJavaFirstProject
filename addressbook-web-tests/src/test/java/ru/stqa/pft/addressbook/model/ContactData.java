@@ -14,6 +14,7 @@ public class ContactData {
     private String MobileHome;
     private String allPhones;
     private String allEmailAddresses;
+    private String firstnameLastname;
 
     @Override
     public boolean equals(Object o) {
@@ -55,6 +56,12 @@ public class ContactData {
         this.lastName = lastName;
         return this;
     }
+
+    public ContactData withFirstLastName(String firstnameLastname) {
+        this.firstnameLastname = firstnameLastname;
+        return this;
+    }
+
     public ContactData withAddress(String address) {
         this.address = address;
         return this;
@@ -127,6 +134,10 @@ public class ContactData {
         return lastName;
     }
 
+    public String getFirstnameLastname() {
+        return firstnameLastname;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -166,4 +177,6 @@ public class ContactData {
     public String getAllEmailAddresses() {
         return allEmailAddresses;
     }
+
+
 }
