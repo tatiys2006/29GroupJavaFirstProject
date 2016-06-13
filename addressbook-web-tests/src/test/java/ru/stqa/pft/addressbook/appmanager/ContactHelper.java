@@ -186,8 +186,12 @@ public class ContactHelper extends HelperBase {
         String firstnameLastname = wd.findElement(By.xpath(".//*[@id='content']/b")).getText();
         String address = wd.findElement(By.xpath(".//*[@id='content']/br[1]")).getText();
         String home = wd.findElement(By.xpath(".//*[@id='content']/br[3]")).getText();
+        //should cut "H: "
+        //if no phone?
         String mobile = wd.findElement(By.xpath(".//*[@id='content']/br[4]")).getText();
+        //should cut "M: "
         String work = wd.findElement(By.xpath(".//*[@id='content']/br[5]")).getText();
+        //should cut "W: "
         String email = wd.findElement(By.xpath(".//*[@id='content']/a[1]")).getText();
         String email2 = wd.findElement(By.xpath(".//*[@id='content']/a[3]")).getText();
         String email3 = wd.findElement(By.xpath(".//*[@id='content']/a[5]")).getText();
